@@ -37,6 +37,13 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.21</version>
         </dependency>
+        <!-- 其他依赖 -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk15on</artifactId>
+            <version>1.69</version> <!-- 可能是其他版本，根据实际情况调整 -->
+        </dependency>
+
     </dependencies>
 
     <build>

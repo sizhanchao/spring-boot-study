@@ -16,7 +16,8 @@
 	<description>spring-boot-study</description>
 	<modules>
 		<module>stream</module>
-	</modules>
+        <module>kafka</module>
+    </modules>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
