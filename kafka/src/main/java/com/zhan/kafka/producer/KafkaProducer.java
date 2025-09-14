@@ -3,6 +3,8 @@ package com.zhan.kafka.producer;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 /**
  * @author zhan
  * @since 2025-08-17 15:57
@@ -16,7 +18,7 @@ public class KafkaProducer {
     }
 
     public void sendMessage(String topic, String message) {
-        kafkaTemplate.send(topic, message);
+        kafkaTemplate.send(topic,1,"sx-"+ UUID.randomUUID(), message);
         System.out.println("Sent message: " + message);
     }
 }

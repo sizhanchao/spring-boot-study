@@ -1,11 +1,11 @@
 package com.zhan.kafka.controller;
 
 import com.zhan.kafka.producer.KafkaProducer;
+import com.zhan.kafka.service.KafkaTruncateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * @author zhan
@@ -17,9 +17,18 @@ public class KafkaController {
     @Autowired
     private KafkaProducer kafkaProducer;
 
+    @Autowired
+    KafkaTruncateService kafkaTruncateService;
+
     @PostMapping("/send")
     public String sendMessage(@RequestParam String msg) {
         kafkaProducer.sendMessage("test-topic", msg);
         return "Message sent: " + msg;
     }
+
+    @GetMapping("delMessage")
+    public void delMessage(@RequestParam long offset) throws ExecutionException, InterruptedException {
+        kafkaTruncateService.deleteRecordsBeforeOffset("test-topic", 0, offset);
+    }
+
 }
